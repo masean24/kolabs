@@ -1,0 +1,231 @@
+@import "tailwindcss";
+@custom-variant dark (&:where(.dark, .dark *));
+
+:root {
+  /* Design System Tokens — Selaras dengan Website Utama Kodie */
+  --kodie-navy: #0F2557;
+  --kodie-blue: #1E4ED8;
+  --kodie-blue-hover: #1D4ED8;
+  --kodie-sky: #60A5FA;
+  --kodie-ink: #0F172A;
+  --kodie-lime: #D9F952;
+  --kodie-lime-hover: #C8EC3B;
+  --kodie-lime-soft: #F2FFBD;
+  --kodie-bg: #F8FAFC;
+  --kodie-console: #0B1736;
+  --font-display: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
+  --font-ui: 'Inter', 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
+  --font-mono: 'JetBrains Mono', ui-monospace, SFMono-Regular, Menlo, monospace;
+}
+
+@layer base {
+  html,
+  body {
+    font-family: var(--font-ui);
+  }
+
+  h1,
+  h2,
+  h3,
+  .font-display {
+    font-family: var(--font-display);
+  }
+
+  code,
+  pre,
+  .font-mono {
+    font-family: var(--font-mono);
+  }
+}
+
+/* Signature Kodie Gradients & Dot Texture */
+.kodie-banner-gradient {
+  background: linear-gradient(125deg, #0D1F4B 0%, #15368A 48%, #2155D6 100%);
+}
+
+.dark .kodie-banner-gradient {
+  background: linear-gradient(125deg, #091026 0%, #0F2557 52%, #1E4ED8 100%);
+}
+
+.kodie-card-lime {
+  background: linear-gradient(125deg, #D9F952 0%, #EEFFC2 100%);
+  color: #0F172A;
+}
+
+.kodie-card-blue {
+  background: linear-gradient(135deg, #93C5FD 0%, #DBEAFE 48%, #EFF6FF 100%);
+  color: #0F172A;
+}
+
+.kodie-dots {
+  background-image: radial-gradient(rgba(148, 163, 184, 0.28) 1.25px, transparent 1.25px);
+  background-size: 22px 22px;
+}
+
+/* Animations */
+@keyframes kodie-pop {
+  0% {
+    opacity: 0;
+    transform: translateY(5px) scale(0.985);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+.animate-kodie-pop {
+  animation: kodie-pop 0.2s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+@keyframes kodie-float {
+  0%,
+  100% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-4px);
+  }
+}
+
+.animate-kodie-float {
+  animation: kodie-float 2.8s ease-in-out infinite;
+}
+
+/* Custom thin scrollbars */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background: rgba(148, 163, 184, 0.38);
+  border-radius: 9999px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(100, 116, 139, 0.6);
+}
+
+/* CodeMirror host fills container cleanly */
+.kodie-cm-host .cm-editor {
+  height: 100%;
+  outline: none;
+  font-family: var(--font-mono);
+}
+
+.kodie-cm-host .cm-scroller {
+  overflow: auto;
+  font-family: var(--font-mono);
+}
+
+/* =========================================================
+   Blockly Host, Toolbox & Flyout Polish (Tanpa clipping!)
+   ========================================================= */
+.kodie-blockly-host {
+  isolation: isolate;
+  position: relative;
+  z-index: 1;
+}
+
+.kodie-blockly-host .blocklySvg {
+  font-family: var(--font-ui) !important;
+}
+
+.kodie-blockly-host .blocklyToolboxDiv {
+  min-width: 158px !important;
+  padding: 10px 8px !important;
+  background-color: #FFFFFF !important;
+  border-right: 1px solid #E2E8F0 !important;
+}
+
+.dark .kodie-blockly-host .blocklyToolboxDiv {
+  background-color: #0F172A !important;
+  color: #E2E8F0 !important;
+  border-right: 1px solid #1E293B !important;
+}
+
+.kodie-blockly-host .blocklyToolboxCategory {
+  margin-bottom: 5px !important;
+  border-radius: 12px !important;
+  overflow: hidden !important;
+}
+
+.kodie-blockly-host .blocklyTreeRow {
+  height: 38px !important;
+  line-height: 38px !important;
+  padding: 0 12px !important;
+  margin: 0 !important;
+  border-radius: 12px !important;
+  display: flex !important;
+  align-items: center !important;
+  border-left-width: 5px !important;
+  cursor: pointer;
+  transition: background-color 0.15s ease, transform 0.12s ease;
+}
+
+.kodie-blockly-host .blocklyTreeRow:hover {
+  background-color: #EFF6FF !important;
+}
+
+.dark .kodie-blockly-host .blocklyTreeRow:hover {
+  background-color: rgba(59, 130, 246, 0.16) !important;
+}
+
+.kodie-blockly-host .blocklyTreeRowContentContainer {
+  display: flex !important;
+  align-items: center !important;
+  gap: 6px !important;
+  overflow: visible !important;
+}
+
+.kodie-blockly-host .blocklyTreeLabel {
+  font-family: var(--font-ui) !important;
+  font-size: 13px !important;
+  font-weight: 700 !important;
+  color: #0F172A !important;
+  line-height: 1.3 !important;
+}
+
+.dark .kodie-blockly-host .blocklyTreeLabel {
+  color: #E2E8F0 !important;
+}
+
+.kodie-blockly-host .blocklyTreeSelected,
+.kodie-blockly-host .blocklyToolboxCategorySelected .blocklyTreeRow {
+  background-color: #1E4ED8 !important;
+  border-radius: 12px !important;
+  box-shadow: 0 4px 12px rgba(30, 78, 216, 0.22);
+}
+
+.kodie-blockly-host .blocklyTreeSelected .blocklyTreeLabel,
+.kodie-blockly-host .blocklyToolboxCategorySelected .blocklyTreeLabel {
+  color: #FFFFFF !important;
+}
+
+/* Flyout harus 100% opaque supaya blok di kanvas tidak tembus di belakangnya */
+.kodie-blockly-host .blocklyFlyout {
+  filter: drop-shadow(4px 0 14px rgba(15, 37, 87, 0.14));
+}
+
+.kodie-blockly-host .blocklyFlyout[style*="display: none"] ~ .blocklyFlyoutScrollbar {
+  display: none !important;
+}
+
+.kodie-blockly-host .blocklyFlyoutBackground {
+  fill: #FFFFFF !important;
+  fill-opacity: 1 !important;
+}
+
+.dark .kodie-blockly-host .blocklyFlyoutBackground {
+  fill: #131D35 !important;
+  fill-opacity: 1 !important;
+}
+
+.dark .kodie-blockly-host .blocklyScrollbarHandle {
+  fill: #475569 !important;
+}
